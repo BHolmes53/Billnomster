@@ -91,13 +91,13 @@
 <div class="col-10 offset-1">
   <h1 class="float-left">Photos</h1>
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#myModal">
+  <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#myPhotos">
     Add a photo
   </button>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myPhotos" tabindex="-1" role="dialog" aria-labelledby="myPhotosLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -106,10 +106,9 @@
         </button>
         <h4 class="modal-title" id="myModalLabel">Add a photo</h4>
       </div>
-      <%= simple_form_for @photo, url: place_comments_path(@place) do |f| %>
+      <%= simple_form_for @photo, url: place_photos_path(@place) do |f| %>
           <div class="modal-body">
             <%= f.input :caption %>
-            <%= f.input :rating, as: :select, collection: Comment::RATINGS %>
           </div>
        <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -118,4 +117,19 @@
       <% end %>
     </div>
   </div>
+</div>
+
+<div class="clear"></div>
+  <div class="row">
+  <% @place.photos.each do |photo| %>
+    <div class="col-12 col-sm-6">
+      <blockquote>
+        <% if photo.humanized_rating.present? %>
+        <b><%= photo.rating %></b> -
+        <% end %>
+        <%= photo.message %>
+        <small><%= photo.user.email %></small>
+      </blockquote>
+    </div>
+  <% end %>
 </div>
