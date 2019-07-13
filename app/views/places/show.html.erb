@@ -118,16 +118,15 @@
     </div>
   </div>
 </div>
+<br />
 
+<h1>Photos</h1>
 <div class="clear"></div>
   <div class="row">
   <% @place.photos.each do |photo| %>
     <div class="col-12 col-sm-6">
       <blockquote>
-        <% if photo.humanized_rating.present? %>
-        <b><%= photo.rating %></b> -
-        <% end %>
-        <%= photo.message %>
+        <b><%= photo.caption %></b> -
         <small><%= photo.user.email %></small>
       </blockquote>
     </div>
