@@ -73,7 +73,7 @@ end
 
 gem "font-awesome-rails"
 gem 'will_paginate', '> 3.0'
-gem 'devise'
+gem 'devise', '>= 4.7.1'
 gem 'geocoder'
 gem 'figaro'
 gem 'carrierwave', '~> 1.0'
